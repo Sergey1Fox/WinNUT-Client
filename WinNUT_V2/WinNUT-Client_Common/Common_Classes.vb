@@ -22,6 +22,7 @@ Public Class UPS_Values
     Public Output_Power As Double = Nothing
     Public Batt_Capacity As Double = Nothing
     Public UPS_Status As UPS_States = Nothing
+    Public Temperature As Double = Nothing
 End Class
 
 Public Class UPSData

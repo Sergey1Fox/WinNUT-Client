@@ -77,7 +77,18 @@ Namespace My
                 Me("StartWithWindows") = value
             End Set
         End Property
-        
+        <Global.System.Configuration.UserScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>
+        Public Property EnableNotifications() As Boolean
+            Get
+                Return CType(Me("EnableNotifications"), Boolean)
+            End Get
+            Set
+                Me("EnableNotifications") = Value
+            End Set
+        End Property
+
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
@@ -482,19 +493,31 @@ Namespace My
                 Me("CAL_BattVMin") = value
             End Set
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("18")>  _
+
+        <Global.System.Configuration.UserScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("18")>
         Public Property CAL_BattVMax() As Integer
             Get
-                Return CType(Me("CAL_BattVMax"),Integer)
+                Return CType(Me("CAL_BattVMax"), Integer)
             End Get
             Set
                 Me("CAL_BattVMax") = value
             End Set
         End Property
-        
+
+        <Global.System.Configuration.UserScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>
+        Public Property CAL_UPSRatedPower() As Integer
+            Get
+                Return CType(Me("CAL_UPSRatedPower"), Integer)
+            End Get
+            Set
+                Me("CAL_UPSRatedPower") = Value
+            End Set
+        End Property
+
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _

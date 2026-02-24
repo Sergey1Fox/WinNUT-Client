@@ -53,6 +53,7 @@ Public Class WinNUT
     Public UPS_Status As String
     Public UPS_OutPower As Double
     Public UPS_InputA As Double
+    Public UPS_Temperature As Double
 
     Private HasFocus As Boolean = True
     Private FormText As String
@@ -66,6 +67,11 @@ Public Class WinNUT
     Private Event UpdateBatteryState(Reason As String)
     ' UPS object operation 
     Private Event RequestConnect()
+
+    ' Timer of Last update
+    Private Timer_LastUpdate As Timer
+    ' Time of Last data from UPS
+    Private LastDataReceived As DateTime = DateTime.Now
 
 #Region "Form Event Handling"
 
@@ -192,6 +198,12 @@ Public Class WinNUT
         AddHandler Microsoft.Win32.SystemEvents.PowerModeChanged, AddressOf SystemEvents_PowerModeChanged
         AddHandler RequestConnect, AddressOf UPS_Connect
         AddHandler My.Settings.PropertyChanged, AddressOf SettingsPropertyChanged
+
+        ' Init timer to update UI
+        Timer_LastUpdate = New Timer()
+        Timer_LastUpdate.Interval = 1000  ' 1 sec
+        AddHandler Timer_LastUpdate.Tick, AddressOf Timer_LastUpdate_Tick
+        Timer_LastUpdate.Start()
 
         LogFile.LogTracing("WinNUT Form completed Load.", LogLvl.LOG_NOTICE, Me)
     End Sub
@@ -617,6 +629,10 @@ Public Class WinNUT
     Private Sub Update_UPS_Data() Handles UPS_Device.DataUpdated
         LogFile.LogTracing("Updating UPS data for Form.", LogLvl.LOG_DEBUG, Me)
 
+        ' UPS data are updated
+        LastDataReceived = DateTime.Now
+        Lbl_LastUpdate.ForeColor = Color.Gray
+
         With UPS_Device.UPS_Datas.UPS_Value
             UPS_BattCh = .Batt_Charge
             UPS_BattV = .Batt_Voltage
@@ -628,6 +644,11 @@ Public Class WinNUT
             UPS_Load = .Load
             UPS_Status = .UPS_Status
             UPS_OutPower = .Output_Power
+            UPS_Temperature = .Temperature
+
+            If My.Settings.CAL_UPSRatedPower > 0 Then
+                UPS_OutPower = (UPS_Load / 100) * My.Settings.CAL_UPSRatedPower
+            End If
 
             If .UPS_Status.HasFlag(UPS_States.OL) Then
                 Lbl_VOL.BackColor = Color.Green
@@ -707,6 +728,7 @@ Public Class WinNUT
             AG_Load.Value1 = UPS_Load
             AG_Load.Value2 = UPS_OutPower
             AG_BattV.Value1 = UPS_BattV
+            AG_BattV.Value2 = UPS_Temperature
             LogFile.LogTracing("Update Icon", LogLvl.LOG_DEBUG, Me)
             UpdateIcon_NotifyIcon()
             RaiseEvent UpdateNotifyIconStr("Update Data", Nothing)
@@ -862,8 +884,7 @@ Public Class WinNUT
     ''' <summary>
     ''' Handle Toast (Windows 10+) and/or NotifyIcon pop-ups.
     ''' </summary>
-    Private Sub ToastNotifyIcon() Handles Me.On_Battery, Me.On_Line, UPS_Device.Lost_Connect,
-        UPS_Device.Connected, UPS_Device.Disconnected
+    Private Sub ToastNotifyIconState() Handles Me.On_Battery, Me.On_Line
 
         LogFile.LogTracing("ToastNotifyIcon running.", LogLvl.LOG_DEBUG, Me)
         NotifyIcon.BalloonTipText = NotifyIcon.Text
@@ -875,6 +896,22 @@ Public Class WinNUT
             LogFile.LogTracing("Sending NotifyIcon ballowtip: " & NotifyIcon.BalloonTipText, LogLvl.LOG_DEBUG, Me)
             NotifyIcon.ShowBalloonTip(10000)
         End If
+    End Sub
+    Private Sub ToastNotifyIcon() Handles UPS_Device.Lost_Connect, UPS_Device.Connected, UPS_Device.Disconnected
+        If My.Settings.EnableNotifications = False Then
+            Return
+        End If
+
+        LogFile.LogTracing("ToastNotifyIcon running.", LogLvl.LOG_DEBUG, Me)
+            NotifyIcon.BalloonTipText = NotifyIcon.Text
+            If AllowToast And NotifyIcon.BalloonTipText <> "" Then
+                Dim Toastparts As String() = NotifyIcon.BalloonTipText.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
+                LogFile.LogTracing("Sending Toast popup with text: " & NotifyIcon.BalloonTipText, LogLvl.LOG_DEBUG, Me)
+                ToastPopup.SendToast(Toastparts)
+            ElseIf NotifyIcon.Visible = True And NotifyIcon.BalloonTipText <> "" Then
+                LogFile.LogTracing("Sending NotifyIcon ballowtip: " & NotifyIcon.BalloonTipText, LogLvl.LOG_DEBUG, Me)
+                NotifyIcon.ShowBalloonTip(10000)
+            End If
     End Sub
 
     Private Function GetIcon(IconIdx As Integer) As Icon
@@ -1079,6 +1116,34 @@ Public Class WinNUT
     Private Sub Menu_Persist_CheckedChanged(sender As Object, e As EventArgs) Handles Menu_Persist.CheckedChanged
         LogFile.LogTracing("Menu_Persist checked state changing to " & Menu_Persist.Checked, LogLvl.LOG_DEBUG, Me)
         My.Settings.NUT_AutoReconnect = Menu_Persist.Checked
+    End Sub
+
+    Private Function FormatElapsedTime(seconds As Integer) As String
+        If seconds < 60 Then
+            Return $"{seconds} second{(If(seconds = 1, "", "s"))}"
+        ElseIf seconds < 3600 Then
+            Dim minutes = CInt(Math.Floor(seconds / 60.0))
+            Return $"{minutes} minute{(If(minutes = 1, "", "s"))}"
+        Else
+            Dim hours = CInt(Math.Floor(seconds / 3600.0))
+            Return $"{hours} hour{(If(hours = 1, "", "s"))}"
+        End If
+    End Function
+
+    Private Sub Timer_LastUpdate_Tick(sender As Object, e As EventArgs)
+        Dim elapsed As TimeSpan = DateTime.Now - LastDataReceived
+        Dim totalSeconds As Integer = CInt(elapsed.TotalSeconds)
+
+        Lbl_LastUpdate.Text = FormatElapsedTime(totalSeconds)
+
+        ' Set color according to "oldness" of data
+        If totalSeconds > 300 Then  ' > 5 min
+            Lbl_LastUpdate.ForeColor = Color.OrangeRed
+        ElseIf totalSeconds > 60 Then  ' > 1 min
+            Lbl_LastUpdate.ForeColor = Color.Orange
+        Else
+            Lbl_LastUpdate.ForeColor = Color.Gray
+        End If
     End Sub
 End Class
 

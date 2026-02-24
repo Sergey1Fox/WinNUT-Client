@@ -36,13 +36,12 @@ Partial Class WinNUT
         Me.Main_Menu = New System.Windows.Forms.MenuStrip()
         Me.Menu_File = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_UPS_Var = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Menu_Quit = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManageOldPrefsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Menu_Quit = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Connection = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Menu_Connect = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Disconnect = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.Menu_Persist = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Settings = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Help = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_About = New System.Windows.Forms.ToolStripMenuItem()
@@ -81,12 +80,14 @@ Partial Class WinNUT
         Me.GB_InF_Dial = New System.Windows.Forms.GroupBox()
         Me.Lbl_InF_Dial = New System.Windows.Forms.Label()
         Me.CB_CurrentLog = New System.Windows.Forms.ComboBox()
+        Me.Menu_Persist = New System.Windows.Forms.ToolStripMenuItem()
         Me.AG_InF = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_InV = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_BattV = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_Load = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_OutV = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_BattCh = New WinNUT_Client.Controls.UPSVarGauge()
+        Me.Lbl_LastUpdate = New System.Windows.Forms.Label()
         Me.ContextMenu_Systray.SuspendLayout()
         Me.Main_Menu.SuspendLayout()
         Me.GB_Status.SuspendLayout()
@@ -162,22 +163,27 @@ Partial Class WinNUT
         resources.ApplyResources(Me.Menu_UPS_Var, "Menu_UPS_Var")
         Me.Menu_UPS_Var.Name = "Menu_UPS_Var"
         '
-        'Menu_Quit
-        '
-        Me.Menu_Quit.Name = "Menu_Quit"
-        resources.ApplyResources(Me.Menu_Quit, "Menu_Quit")
-        '
         'ManageOldPrefsToolStripMenuItem
         '
         resources.ApplyResources(Me.ManageOldPrefsToolStripMenuItem, "ManageOldPrefsToolStripMenuItem")
         Me.ManageOldPrefsToolStripMenuItem.Image = Global.WinNUT_Client.My.Resources.Resources.regedit_exe_14_100_0
         Me.ManageOldPrefsToolStripMenuItem.Name = "ManageOldPrefsToolStripMenuItem"
         '
+        'Menu_Quit
+        '
+        Me.Menu_Quit.Name = "Menu_Quit"
+        resources.ApplyResources(Me.Menu_Quit, "Menu_Quit")
+        '
         'Menu_Connection
         '
         Me.Menu_Connection.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Persist, Me.ToolStripSeparator1, Me.Menu_Connect, Me.Menu_Disconnect})
         Me.Menu_Connection.Name = "Menu_Connection"
         resources.ApplyResources(Me.Menu_Connection, "Menu_Connection")
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        resources.ApplyResources(Me.ToolStripSeparator1, "ToolStripSeparator1")
         '
         'Menu_Connect
         '
@@ -190,19 +196,6 @@ Partial Class WinNUT
         resources.ApplyResources(Me.Menu_Disconnect, "Menu_Disconnect")
         Me.Menu_Disconnect.Image = Global.WinNUT_Client.My.Resources.Resources.disconnect2
         Me.Menu_Disconnect.Name = "Menu_Disconnect"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        resources.ApplyResources(Me.ToolStripSeparator1, "ToolStripSeparator1")
-        '
-        'Menu_Persist
-        '
-        Me.Menu_Persist.Checked = Global.WinNUT_Client.My.MySettings.Default.NUT_AutoReconnect
-        Me.Menu_Persist.CheckOnClick = True
-        Me.Menu_Persist.Image = Global.WinNUT_Client.My.Resources.Resources.RepeatHS
-        Me.Menu_Persist.Name = "Menu_Persist"
-        resources.ApplyResources(Me.Menu_Persist, "Menu_Persist")
         '
         'Menu_Settings
         '
@@ -463,6 +456,14 @@ Partial Class WinNUT
         resources.ApplyResources(Me.CB_CurrentLog, "CB_CurrentLog")
         Me.CB_CurrentLog.Name = "CB_CurrentLog"
         '
+        'Menu_Persist
+        '
+        Me.Menu_Persist.Checked = Global.WinNUT_Client.My.MySettings.Default.NUT_AutoReconnect
+        Me.Menu_Persist.CheckOnClick = True
+        Me.Menu_Persist.Image = Global.WinNUT_Client.My.Resources.Resources.RepeatHS
+        Me.Menu_Persist.Name = "Menu_Persist"
+        resources.ApplyResources(Me.Menu_Persist, "Menu_Persist")
+        '
         'AG_InF
         '
         Me.AG_InF.BaseArcRadius = 45
@@ -533,7 +534,7 @@ Partial Class WinNUT
         Me.AG_BattV.ScaleNumbersFormat = Nothing
         Me.AG_BattV.ScaleNumbersRadius = 60
         Me.AG_BattV.UnitValue1 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Volts
-        Me.AG_BattV.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.None
+        Me.AG_BattV.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.TemperatureC
         Me.AG_BattV.Value = 0!
         Me.AG_BattV.Value1 = 0!
         Me.AG_BattV.Value2 = 0!
@@ -613,11 +614,19 @@ Partial Class WinNUT
         Me.AG_BattCh.Value1 = 0!
         Me.AG_BattCh.Value2 = 0!
         '
+        'Lbl_LastUpdate
+        '
+        resources.ApplyResources(Me.Lbl_LastUpdate, "Lbl_LastUpdate")
+        Me.Lbl_LastUpdate.CausesValidation = False
+        Me.Lbl_LastUpdate.Name = "Lbl_LastUpdate"
+        Me.Lbl_LastUpdate.UseCompatibleTextRendering = True
+        '
         'WinNUT
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         resources.ApplyResources(Me, "$this")
+        Me.Controls.Add(Me.Lbl_LastUpdate)
         Me.Controls.Add(Me.CB_CurrentLog)
         Me.Controls.Add(Me.GB_InF_Dial)
         Me.Controls.Add(Me.GB_InV_Dial)
@@ -717,4 +726,5 @@ Partial Class WinNUT
     Friend WithEvents ManageOldPrefsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents Menu_Persist As ToolStripMenuItem
+    Friend WithEvents Lbl_LastUpdate As Label
 End Class

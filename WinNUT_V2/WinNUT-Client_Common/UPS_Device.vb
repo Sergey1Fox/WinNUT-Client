@@ -326,6 +326,7 @@ Public Class UPS_Device
                     .Input_Voltage = Double.Parse(GetUPSVar("input.voltage", -1), INVARIANT_CULTURE)
                     .Output_Voltage = Double.Parse(GetUPSVar("output.voltage", -1), INVARIANT_CULTURE)
                     .Load = Double.Parse(GetUPSVar("ups.load", 0), INVARIANT_CULTURE)
+                    .Temperature = Double.Parse(GetUPSVar("ups.temperature", 0), INVARIANT_CULTURE)
 
                     ' Retrieve and/or calculate output power if possible.
                     If _PowerCalculationMethod <> PowerMethod.Unavailable Then

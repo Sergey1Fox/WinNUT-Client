@@ -174,6 +174,8 @@ Namespace Controls
             Percent
             Volts
             Watts
+            TemperatureC
+            TemperatureF
         End Enum
 
         Public Sub New()
@@ -268,6 +270,10 @@ Namespace Controls
                     returnStr &= " V"
                 Case UnitValueEnum.Watts
                     returnStr &= " W"
+                Case UnitValueEnum.TemperatureC
+                    returnStr &= " °C"
+                Case UnitValueEnum.TemperatureF
+                    returnStr &= " F"
             End Select
 
             Return returnStr

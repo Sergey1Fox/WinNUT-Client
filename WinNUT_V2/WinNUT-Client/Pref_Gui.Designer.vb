@@ -42,6 +42,7 @@ Partial Class Pref_Gui
         Me.Lbl_Port = New System.Windows.Forms.Label()
         Me.Lbl_Server_IP = New System.Windows.Forms.Label()
         Me.Tab_Calibrage = New System.Windows.Forms.TabPage()
+        Me.Tb_UPS_Rated_Power = New System.Windows.Forms.TextBox()
         Me.Cbx_Freq_Input = New System.Windows.Forms.ComboBox()
         Me.Tb_BattV_Max = New System.Windows.Forms.TextBox()
         Me.Tb_OutV_Max = New System.Windows.Forms.TextBox()
@@ -94,6 +95,7 @@ Partial Class Pref_Gui
         Me.Btn_Apply = New System.Windows.Forms.Button()
         Me.Btn_Cancel = New System.Windows.Forms.Button()
         Me.Pref_TlTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CB_Enable_Notifications = New System.Windows.Forms.CheckBox()
         Me.TabControl_Options.SuspendLayout()
         Me.Tab_Connexion.SuspendLayout()
         CType(Me.pollingIntervalValue, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,6 +227,7 @@ Partial Class Pref_Gui
         '
         'Tab_Calibrage
         '
+        Me.Tab_Calibrage.Controls.Add(Me.Tb_UPS_Rated_Power)
         Me.Tab_Calibrage.Controls.Add(Me.Cbx_Freq_Input)
         Me.Tab_Calibrage.Controls.Add(Me.Tb_BattV_Max)
         Me.Tab_Calibrage.Controls.Add(Me.Tb_OutV_Max)
@@ -245,6 +248,12 @@ Partial Class Pref_Gui
         resources.ApplyResources(Me.Tab_Calibrage, "Tab_Calibrage")
         Me.Tab_Calibrage.Name = "Tab_Calibrage"
         Me.Tab_Calibrage.UseVisualStyleBackColor = True
+        '
+        'Tb_UPS_Rated_Power
+        '
+        resources.ApplyResources(Me.Tb_UPS_Rated_Power, "Tb_UPS_Rated_Power")
+        Me.Tb_UPS_Rated_Power.Name = "Tb_UPS_Rated_Power"
+        Me.Pref_TlTip.SetToolTip(Me.Tb_UPS_Rated_Power, resources.GetString("Tb_UPS_Rated_Power.ToolTip"))
         '
         'Cbx_Freq_Input
         '
@@ -320,7 +329,7 @@ Partial Class Pref_Gui
         'Lbl_LoadUPS
         '
         resources.ApplyResources(Me.Lbl_LoadUPS, "Lbl_LoadUPS")
-        Me.Lbl_LoadUPS.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Lbl_LoadUPS.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Lbl_LoadUPS.Name = "Lbl_LoadUPS"
         '
         'Lbl_OutputV
@@ -345,6 +354,7 @@ Partial Class Pref_Gui
         '
         'Tab_Miscellanous
         '
+        Me.Tab_Miscellanous.Controls.Add(Me.CB_Enable_Notifications)
         Me.Tab_Miscellanous.Controls.Add(Me.Cbx_LogLevel)
         Me.Tab_Miscellanous.Controls.Add(Me.Btn_DeleteLog)
         Me.Tab_Miscellanous.Controls.Add(Me.Btn_ViewLog)
@@ -587,6 +597,13 @@ Partial Class Pref_Gui
         resources.ApplyResources(Me.Btn_Cancel, "Btn_Cancel")
         Me.Btn_Cancel.Name = "Btn_Cancel"
         '
+        'CB_Enable_Notifications
+        '
+        resources.ApplyResources(Me.CB_Enable_Notifications, "CB_Enable_Notifications")
+        Me.CB_Enable_Notifications.Name = "CB_Enable_Notifications"
+        Me.Pref_TlTip.SetToolTip(Me.CB_Enable_Notifications, resources.GetString("CB_Enable_Notifications.ToolTip"))
+        Me.CB_Enable_Notifications.UseVisualStyleBackColor = True
+        '
         'Pref_Gui
         '
         resources.ApplyResources(Me, "$this")
@@ -685,4 +702,6 @@ Partial Class Pref_Gui
     Friend WithEvents pollingIntervalUnitLabel As Label
     Private WithEvents pollingIntervalValue As NumericUpDown
     Private WithEvents Btn_Cancel As Button
+    Friend WithEvents Tb_UPS_Rated_Power As TextBox
+    Friend WithEvents CB_Enable_Notifications As CheckBox
 End Class

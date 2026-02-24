@@ -40,10 +40,12 @@ Public Class Pref_Gui
             My.Settings.CAL_VoltOutMax = CInt(Tb_OutV_Max.Text)
             My.Settings.CAL_BattVMin = CInt(Tb_BattV_Min.Text)
             My.Settings.CAL_BattVMax = CInt(Tb_BattV_Max.Text)
+            My.Settings.CAL_UPSRatedPower = CInt(Tb_UPS_Rated_Power.Text)
             My.Settings.MinimizeToTray = CB_Systray.Checked
             My.Settings.MinimizeOnStart = CB_Start_Mini.Checked
             My.Settings.CloseToTray = CB_Close_Tray.Checked
             My.Settings.StartWithWindows = CB_Start_W_Win.Checked
+            My.Settings.EnableNotifications = CB_Enable_Notifications.Checked
             My.Settings.LG_LogToFile = CB_Use_Logfile.Checked
             My.Settings.LG_LogLevel = Cbx_LogLevel.SelectedIndex
             My.Settings.PW_BattChrgFloor = CInt(Tb_BattLimit_Load.Text)
@@ -117,10 +119,12 @@ Public Class Pref_Gui
             Tb_OutV_Max.Text = My.Settings.CAL_VoltOutMax
             Tb_BattV_Min.Text = My.Settings.CAL_BattVMin
             Tb_BattV_Max.Text = My.Settings.CAL_BattVMax
+            Tb_UPS_Rated_Power.Text = My.Settings.CAL_UPSRatedPower
             CB_Systray.Checked = My.Settings.MinimizeToTray
             CB_Start_Mini.Checked = My.Settings.MinimizeOnStart
             CB_Close_Tray.Checked = My.Settings.CloseToTray
             CB_Start_W_Win.Checked = My.Settings.StartWithWindows
+            CB_Enable_Notifications.Checked = My.Settings.EnableNotifications
             CB_Use_Logfile.Checked = My.Settings.LG_LogToFile
             Cbx_LogLevel.SelectedIndex = My.Settings.LG_LogLevel
             Tb_BattLimit_Load.Text = My.Settings.PW_BattChrgFloor
@@ -212,7 +216,7 @@ Public Class Pref_Gui
         Cbx_Delay_Verif.Enabled = Cb_Update_At_Start.Checked
     End Sub
 
-    Private Sub Number_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles Tb_Port.Validating, Tb_OutV_Min.Validating, Tb_OutV_Max.Validating, Tb_InV_Min.Validating, Tb_InV_Max.Validating, Tb_InF_Min.Validating, Tb_InF_Max.Validating, Tb_GraceTime.Validating, Tb_Delay_Stop.Validating, Tb_BattV_Min.Validating, Tb_BattV_Max.Validating, Tb_BattLimit_Time.Validating, Tb_BattLimit_Load.Validating
+    Private Sub Number_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles Tb_Port.Validating, Tb_OutV_Min.Validating, Tb_OutV_Max.Validating, Tb_InV_Min.Validating, Tb_InV_Max.Validating, Tb_InF_Min.Validating, Tb_InF_Max.Validating, Tb_GraceTime.Validating, Tb_Delay_Stop.Validating, Tb_BattV_Min.Validating, Tb_BattV_Max.Validating, Tb_BattLimit_Time.Validating, Tb_BattLimit_Load.Validating, Tb_UPS_Rated_Power.Validating
         If IsShowed Then
             Dim StrTest As String = sender.Text
             Dim Result As Object = 0
@@ -236,6 +240,9 @@ Public Class Pref_Gui
                 Case "Tb_GraceTime", "Tb_Delay_Stop"
                     MinValue = 1
                     MaxValue = 3600
+                Case "Tb_UPS_Rated_Power"
+                    MinValue = 0
+                    MaxValue = 10000
             End Select
 
             If sender.Text = "" Then
@@ -354,6 +361,11 @@ Public Class Pref_Gui
             Btn_ViewLog.Enabled = False
             Btn_DeleteLog.Enabled = False
         End If
+    End Sub
+
+    Private Sub Pref_Gui_ResizeEnd(sender As Object, e As EventArgs) Handles MyBase.ResizeEnd
+        TabControl_Options.Height = Me.Height - 90
+        TabControl_Options.Width = Me.Width - 40
     End Sub
 
 #End Region

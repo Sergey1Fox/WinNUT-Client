@@ -186,57 +186,6 @@
   <data name="Main_Menu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="Menu_UPS_Var.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="Menu_UPS_Var.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Menu_UPS_Var.Text" xml:space="preserve">
-    <value>UPS Variable</value>
-  </data>
-  <data name="ManageOldPrefsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="ManageOldPrefsToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ManageOldPrefsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="ManageOldPrefsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Manage Old Prefs...</value>
-  </data>
-  <data name="Menu_Quit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="Menu_Quit.Text" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="Menu_File.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="Menu_File.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="Menu_Connection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 20</value>
-  </data>
-  <data name="Menu_Connection.Text" xml:space="preserve">
-    <value>Connection</value>
-  </data>
-  <data name="Menu_Settings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="Menu_Settings.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="Menu_Help.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="Menu_Help.Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
   <data name="Main_Menu.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -262,10 +211,52 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Main_Menu.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
+  </data>
+  <data name="Menu_File.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="Menu_File.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Menu_UPS_Var.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Menu_UPS_Var.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="Menu_UPS_Var.Text" xml:space="preserve">
+    <value>UPS Variable</value>
+  </data>
+  <data name="ManageOldPrefsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ManageOldPrefsToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ManageOldPrefsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="ManageOldPrefsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Manage Old Prefs...</value>
+  </data>
+  <data name="Menu_Quit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="Menu_Quit.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Menu_Connection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 20</value>
+  </data>
+  <data name="Menu_Connection.Text" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="ToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 6</value>
   </data>
   <data name="Menu_Connect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="Menu_Connect.Text" xml:space="preserve">
     <value>Connect</value>
@@ -274,19 +265,22 @@
     <value>False</value>
   </data>
   <data name="Menu_Disconnect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="Menu_Disconnect.Text" xml:space="preserve">
     <value>Disconnect</value>
   </data>
-  <data name="ToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+  <data name="Menu_Settings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
   </data>
-  <data name="Menu_Persist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+  <data name="Menu_Settings.Text" xml:space="preserve">
+    <value>Settings</value>
   </data>
-  <data name="Menu_Persist.Text" xml:space="preserve">
-    <value>Persist</value>
+  <data name="Menu_Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="Menu_Help.Text" xml:space="preserve">
+    <value>Help</value>
   </data>
   <data name="Menu_About.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 22</value>
@@ -553,7 +547,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GB_Status.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="Lbl_VSerial.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
@@ -1180,7 +1174,7 @@
     <value>AG_InV</value>
   </data>
   <data name="&gt;&gt;AG_InV.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25554, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_InV.Parent" xml:space="preserve">
     <value>GB_InV_Dial</value>
@@ -1219,7 +1213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GB_InV_Dial.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="Lbl_InV_Dial.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1270,7 +1264,7 @@
     <value>AG_OutV</value>
   </data>
   <data name="&gt;&gt;AG_OutV.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25554, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_OutV.Parent" xml:space="preserve">
     <value>GB_OutV_Dial</value>
@@ -1309,7 +1303,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GB_OutV_Dial.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="Lbl_OutV_Dial.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1384,7 +1378,7 @@
     <value>AG_BattCh</value>
   </data>
   <data name="&gt;&gt;AG_BattCh.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25554, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_BattCh.Parent" xml:space="preserve">
     <value>GB_BattCh_Dial</value>
@@ -1411,7 +1405,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GB_BattCh_Dial.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="PBox_Battery_State.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1486,7 +1480,7 @@
     <value>AG_Load</value>
   </data>
   <data name="&gt;&gt;AG_Load.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25554, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_Load.Parent" xml:space="preserve">
     <value>GB_Load_Dial</value>
@@ -1525,7 +1519,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GB_Load_Dial.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="Lbl_Load_Dial.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1576,7 +1570,7 @@
     <value>AG_BattV</value>
   </data>
   <data name="&gt;&gt;AG_BattV.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25554, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_BattV.Parent" xml:space="preserve">
     <value>GB_BattV_Dial</value>
@@ -1615,7 +1609,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GB_BattV_Dial.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="Lbl_BattV_Dial.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1666,7 +1660,7 @@
     <value>AG_InF</value>
   </data>
   <data name="&gt;&gt;AG_InF.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25554, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_InF.Parent" xml:space="preserve">
     <value>GB_InF_Dial</value>
@@ -1705,7 +1699,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GB_InF_Dial.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="Lbl_InF_Dial.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1774,7 +1768,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;CB_CurrentLog.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="Menu_Persist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 22</value>
+  </data>
+  <data name="Menu_Persist.Text" xml:space="preserve">
+    <value>Persist</value>
   </data>
   <data name="AG_InF.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 26</value>
@@ -1798,7 +1798,7 @@
     <value>AG_InF</value>
   </data>
   <data name="&gt;&gt;AG_InF.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25578, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_InF.Parent" xml:space="preserve">
     <value>GB_InF_Dial</value>
@@ -1822,7 +1822,7 @@
     <value>AG_InV</value>
   </data>
   <data name="&gt;&gt;AG_InV.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25578, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_InV.Parent" xml:space="preserve">
     <value>GB_InV_Dial</value>
@@ -1852,7 +1852,7 @@
     <value>AG_BattV</value>
   </data>
   <data name="&gt;&gt;AG_BattV.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25578, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_BattV.Parent" xml:space="preserve">
     <value>GB_BattV_Dial</value>
@@ -1882,7 +1882,7 @@
     <value>AG_Load</value>
   </data>
   <data name="&gt;&gt;AG_Load.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25578, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_Load.Parent" xml:space="preserve">
     <value>GB_Load_Dial</value>
@@ -1912,7 +1912,7 @@
     <value>AG_OutV</value>
   </data>
   <data name="&gt;&gt;AG_OutV.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25578, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_OutV.Parent" xml:space="preserve">
     <value>GB_OutV_Dial</value>
@@ -1942,13 +1942,55 @@
     <value>AG_BattCh</value>
   </data>
   <data name="&gt;&gt;AG_BattCh.Type" xml:space="preserve">
-    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=2.3.8972.25578, Culture=neutral, PublicKeyToken=null</value>
+    <value>WinNUT_Client.Controls.UPSVarGauge, WinNUT-Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AG_BattCh.Parent" xml:space="preserve">
     <value>GB_BattCh_Dial</value>
   </data>
   <data name="&gt;&gt;AG_BattCh.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="Lbl_LastUpdate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="Lbl_LastUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Lbl_LastUpdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>528, 11</value>
+  </data>
+  <data name="Lbl_LastUpdate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Lbl_LastUpdate.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>164, 13</value>
+  </data>
+  <data name="Lbl_LastUpdate.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>164, 13</value>
+  </data>
+  <data name="Lbl_LastUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 13</value>
+  </data>
+  <data name="Lbl_LastUpdate.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="Lbl_LastUpdate.Text" xml:space="preserve">
+    <value>0 seconds</value>
+  </data>
+  <data name="Lbl_LastUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Lbl_LastUpdate.Name" xml:space="preserve">
+    <value>Lbl_LastUpdate</value>
+  </data>
+  <data name="&gt;&gt;Lbl_LastUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lbl_LastUpdate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Lbl_LastUpdate.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1961,9 +2003,6 @@
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>704, 381</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>720, 420</value>
@@ -2034,16 +2073,16 @@
   <data name="&gt;&gt;Menu_UPS_Var.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Menu_Quit.Name" xml:space="preserve">
-    <value>Menu_Quit</value>
-  </data>
-  <data name="&gt;&gt;Menu_Quit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;ManageOldPrefsToolStripMenuItem.Name" xml:space="preserve">
     <value>ManageOldPrefsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ManageOldPrefsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Menu_Quit.Name" xml:space="preserve">
+    <value>Menu_Quit</value>
+  </data>
+  <data name="&gt;&gt;Menu_Quit.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Menu_Connection.Name" xml:space="preserve">
@@ -2051,6 +2090,12 @@
   </data>
   <data name="&gt;&gt;Menu_Connection.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripSeparator1.Name" xml:space="preserve">
+    <value>ToolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;ToolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Menu_Connect.Name" xml:space="preserve">
     <value>Menu_Connect</value>
@@ -2062,18 +2107,6 @@
     <value>Menu_Disconnect</value>
   </data>
   <data name="&gt;&gt;Menu_Disconnect.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ToolStripSeparator1.Name" xml:space="preserve">
-    <value>ToolStripSeparator1</value>
-  </data>
-  <data name="&gt;&gt;ToolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Menu_Persist.Name" xml:space="preserve">
-    <value>Menu_Persist</value>
-  </data>
-  <data name="&gt;&gt;Menu_Persist.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Menu_Settings.Name" xml:space="preserve">
@@ -2104,6 +2137,12 @@
     <value>Menu_Update</value>
   </data>
   <data name="&gt;&gt;Menu_Update.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Menu_Persist.Name" xml:space="preserve">
+    <value>Menu_Persist</value>
+  </data>
+  <data name="&gt;&gt;Menu_Persist.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
