@@ -14,6 +14,8 @@ Public Class Pref_Gui
     Private IsShowed As Boolean = False
     Private PrefsModified As Boolean = False
 
+    Public NUTParametersChanged As Boolean = False
+
     Public Event SavedPreferences()
 
     Private Sub Btn_Cancel_Click(sender As Object, e As EventArgs) Handles Btn_Cancel.Click
@@ -24,12 +26,13 @@ Public Class Pref_Gui
     Private Sub Save_Params()
         Try
             LogFile.LogTracing("Save Parameters.", LogLvl.LOG_DEBUG, Me)
-            My.Settings.NUT_ServerAddress = Tb_Server_IP.Text
-            My.Settings.NUT_ServerPort = CInt(Tb_Port.Text)
-            My.Settings.NUT_UPSName = Tb_UPS_Name.Text
-            My.Settings.NUT_PollIntervalMsec = CInt(pollingIntervalValue.Value * 1000D)
-            My.Settings.NUT_Username = Tb_Login_Nut.Text
-            My.Settings.NUT_Password = Tb_Pwd_Nut.Text
+            NUTParametersChanged = False
+            If StrComp(My.Settings.NUT_ServerAddress, Tb_Server_IP.Text, CompareMethod.Text) <> 0 Then My.Settings.NUT_ServerAddress = Tb_Server_IP.Text : NUTParametersChanged = True
+            If My.Settings.NUT_ServerPort <> CInt(Tb_Port.Text) Then My.Settings.NUT_ServerPort = CInt(Tb_Port.Text) : NUTParametersChanged = True
+            If StrComp(My.Settings.NUT_UPSName, Tb_UPS_Name.Text, CompareMethod.Text) <> 0 Then My.Settings.NUT_UPSName = Tb_UPS_Name.Text : NUTParametersChanged = True
+            If My.Settings.NUT_PollIntervalMsec <> CInt(pollingIntervalValue.Value * 1000D) Then My.Settings.NUT_PollIntervalMsec = CInt(pollingIntervalValue.Value * 1000D) : NUTParametersChanged = True
+            If StrComp(My.Settings.NUT_Username, Tb_Login_Nut.Text, CompareMethod.Text) <> 0 Then My.Settings.NUT_Username = Tb_Login_Nut.Text : NUTParametersChanged = True
+            If StrComp(My.Settings.NUT_Password, Tb_Pwd_Nut.Text, CompareMethod.Text) <> 0 Then My.Settings.NUT_Password = Tb_Pwd_Nut.Text : NUTParametersChanged = True
             My.Settings.NUT_AutoReconnect = Cb_Reconnect.Checked
             My.Settings.CAL_VoltInMin = CInt(Tb_InV_Min.Text)
             My.Settings.CAL_VoltInMax = CInt(Tb_InV_Max.Text)

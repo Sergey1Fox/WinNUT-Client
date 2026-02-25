@@ -175,6 +175,9 @@ Public Class WinNUT
         LogFile.LogTracing("Update Icon at Startup", LogLvl.LOG_DEBUG, Me)
         ' Start_Tray_Icon = Nothing
 
+        ' Init timer to update UI
+        Timer_LastUpdate = New Timer()
+
         ' TODO: Move below code to a dedicated onsettingsloaded method.
         ApplyApplicationPreferences()
         UpdateMainMenuState()
@@ -198,10 +201,6 @@ Public Class WinNUT
         AddHandler Microsoft.Win32.SystemEvents.PowerModeChanged, AddressOf SystemEvents_PowerModeChanged
         AddHandler RequestConnect, AddressOf UPS_Connect
         AddHandler My.Settings.PropertyChanged, AddressOf SettingsPropertyChanged
-
-        ' Init timer to update UI
-        Timer_LastUpdate = New Timer()
-        Timer_LastUpdate.Interval = 1000  ' 1 sec
         AddHandler Timer_LastUpdate.Tick, AddressOf Timer_LastUpdate_Tick
         Timer_LastUpdate.Start()
 
@@ -627,24 +626,26 @@ Public Class WinNUT
     End Sub
 
     Private Sub Update_UPS_Data() Handles UPS_Device.DataUpdated
+        Dim DataChanged As Boolean = False
+
         LogFile.LogTracing("Updating UPS data for Form.", LogLvl.LOG_DEBUG, Me)
 
-        ' UPS data are updated
-        LastDataReceived = DateTime.Now
-        Lbl_LastUpdate.ForeColor = Color.Gray
-
         With UPS_Device.UPS_Datas.UPS_Value
-            UPS_BattCh = .Batt_Charge
-            UPS_BattV = .Batt_Voltage
-            UPS_BattRuntime = .Batt_Runtime
-            UPS_BattCapacity = .Batt_Capacity
-            UPS_InputF = .Power_Frequency
-            UPS_InputV = .Input_Voltage
-            UPS_OutputV = .Output_Voltage
-            UPS_Load = .Load
-            UPS_Status = .UPS_Status
-            UPS_OutPower = .Output_Power
-            UPS_Temperature = .Temperature
+            If UPS_BattCh <> .Batt_Charge Then UPS_BattCh = .Batt_Charge : DataChanged = True
+            If UPS_BattV <> .Batt_Voltage Then UPS_BattV = .Batt_Voltage : DataChanged = True
+            If UPS_BattRuntime <> .Batt_Runtime Then UPS_BattRuntime = .Batt_Runtime : DataChanged = True
+            If UPS_BattCapacity <> .Batt_Capacity Then UPS_BattCapacity = .Batt_Capacity : DataChanged = True
+            If UPS_InputF <> .Power_Frequency Then UPS_InputF = .Power_Frequency : DataChanged = True
+            If UPS_InputV <> .Input_Voltage Then UPS_InputV = .Input_Voltage : DataChanged = True
+            If UPS_OutputV <> .Output_Voltage Then UPS_OutputV = .Output_Voltage : DataChanged = True
+            If UPS_Load <> .Load Then UPS_Load = .Load : DataChanged = True
+            If UPS_Status <> .UPS_Status Then UPS_Status = .UPS_Status : DataChanged = True
+            If UPS_OutPower <> .Output_Power Then UPS_OutPower = .Output_Power : DataChanged = True
+            If UPS_Temperature <> .Temperature Then UPS_Temperature = .Temperature : DataChanged = True
+
+            ' UPS data are updated
+            If DataChanged Then LastDataReceived = DateTime.Now
+            Lbl_LastUpdate.ForeColor = Color.Gray
 
             If My.Settings.CAL_UPSRatedPower > 0 Then
                 UPS_OutPower = (UPS_Load / 100) * My.Settings.CAL_UPSRatedPower
@@ -828,7 +829,7 @@ Public Class WinNUT
         LogFile.LogTracing("Beginning ApplyApplicationPreferences subroutine.", LogLvl.LOG_DEBUG, Me)
         Dim autoReconnect = False
 
-        If (UPS_Device IsNot Nothing) AndAlso UPS_Device.IsConnected Then
+        If (UPS_Device IsNot Nothing) AndAlso UPS_Device.IsConnected AndAlso Pref_Gui.NUTParametersChanged Then
             autoReconnect = True
             UPSDisconnect()
         Else
@@ -848,6 +849,12 @@ Public Class WinNUT
 
         If autoReconnect Then
             UPS_Connect()
+        End If
+
+        If (My.Settings.NUT_PollIntervalMsec / 3) < 1000 Then
+            Timer_LastUpdate.Interval = 1000
+        Else
+            Timer_LastUpdate.Interval = Int(My.Settings.NUT_PollIntervalMsec / 3)
         End If
 
         LogFile.LogTracing("WinNut Preferences Applied.", LogLvl.LOG_NOTICE, Me, StrLog.Item(AppResxStr.STR_LOG_PREFS))
@@ -1131,6 +1138,8 @@ Public Class WinNUT
     End Function
 
     Private Sub Timer_LastUpdate_Tick(sender As Object, e As EventArgs)
+        If Me.WindowState = FormWindowState.Minimized Then Return
+
         Dim elapsed As TimeSpan = DateTime.Now - LastDataReceived
         Dim totalSeconds As Integer = CInt(elapsed.TotalSeconds)
 

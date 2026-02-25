@@ -81,13 +81,13 @@ Partial Class WinNUT
         Me.Lbl_InF_Dial = New System.Windows.Forms.Label()
         Me.CB_CurrentLog = New System.Windows.Forms.ComboBox()
         Me.Menu_Persist = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Lbl_LastUpdate = New System.Windows.Forms.Label()
         Me.AG_InF = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_InV = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_BattV = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_Load = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_OutV = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_BattCh = New WinNUT_Client.Controls.UPSVarGauge()
-        Me.Lbl_LastUpdate = New System.Windows.Forms.Label()
         Me.ContextMenu_Systray.SuspendLayout()
         Me.Main_Menu.SuspendLayout()
         Me.GB_Status.SuspendLayout()
@@ -464,6 +464,13 @@ Partial Class WinNUT
         Me.Menu_Persist.Name = "Menu_Persist"
         resources.ApplyResources(Me.Menu_Persist, "Menu_Persist")
         '
+        'Lbl_LastUpdate
+        '
+        resources.ApplyResources(Me.Lbl_LastUpdate, "Lbl_LastUpdate")
+        Me.Lbl_LastUpdate.CausesValidation = False
+        Me.Lbl_LastUpdate.Name = "Lbl_LastUpdate"
+        Me.Lbl_LastUpdate.UseCompatibleTextRendering = True
+        '
         'AG_InF
         '
         Me.AG_InF.BaseArcRadius = 45
@@ -613,13 +620,6 @@ Partial Class WinNUT
         Me.AG_BattCh.Value = 0!
         Me.AG_BattCh.Value1 = 0!
         Me.AG_BattCh.Value2 = 0!
-        '
-        'Lbl_LastUpdate
-        '
-        resources.ApplyResources(Me.Lbl_LastUpdate, "Lbl_LastUpdate")
-        Me.Lbl_LastUpdate.CausesValidation = False
-        Me.Lbl_LastUpdate.Name = "Lbl_LastUpdate"
-        Me.Lbl_LastUpdate.UseCompatibleTextRendering = True
         '
         'WinNUT
         '
