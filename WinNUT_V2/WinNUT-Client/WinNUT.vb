@@ -175,8 +175,9 @@ Public Class WinNUT
         LogFile.LogTracing("Update Icon at Startup", LogLvl.LOG_DEBUG, Me)
         ' Start_Tray_Icon = Nothing
 
-        ' Init timer to update UI
+        ' Init timer to update UI DataChanges
         Timer_LastUpdate = New Timer()
+        Timer_LastUpdate.Interval = 1000
 
         ' TODO: Move below code to a dedicated onsettingsloaded method.
         ApplyApplicationPreferences()
@@ -851,12 +852,6 @@ Public Class WinNUT
             UPS_Connect()
         End If
 
-        If (My.Settings.NUT_PollIntervalMsec / 3) < 1000 Then
-            Timer_LastUpdate.Interval = 1000
-        Else
-            Timer_LastUpdate.Interval = Int(My.Settings.NUT_PollIntervalMsec / 3)
-        End If
-
         LogFile.LogTracing("WinNut Preferences Applied.", LogLvl.LOG_NOTICE, Me, StrLog.Item(AppResxStr.STR_LOG_PREFS))
     End Sub
 
@@ -1127,13 +1122,13 @@ Public Class WinNUT
 
     Private Function FormatElapsedTime(seconds As Integer) As String
         If seconds < 60 Then
-            Return $"{seconds} second{(If(seconds = 1, "", "s"))}"
+            Return $"{seconds} seconds"
         ElseIf seconds < 3600 Then
             Dim minutes = CInt(Math.Floor(seconds / 60.0))
-            Return $"{minutes} minute{(If(minutes = 1, "", "s"))}"
+            Return $"{minutes} minutes"
         Else
             Dim hours = CInt(Math.Floor(seconds / 3600.0))
-            Return $"{hours} hour{(If(hours = 1, "", "s"))}"
+            Return $"{hours} hours"
         End If
     End Function
 

@@ -20,6 +20,7 @@ Namespace Controls
 
         Private ReadOnly m_value1 As Single
         Private m_value2 As Single
+        Private m_value1_prev As Single
 
         Private ReadOnly m_MinValue As Single = 0
         Private ReadOnly m_MaxValue As Single = 100
@@ -54,6 +55,7 @@ Namespace Controls
         Private ReadOnly m_NeedleColor1 = AGaugeNeedleColor.Gray
         Private ReadOnly m_NeedleColor2 = Color.DimGray
         Private ReadOnly m_NeedleWidth = 2
+        Private m_ShowPreviousValue As Boolean = False
 
         Private m_gradientType = GradientTypeEnum.RedGreen
         Private m_gradientOrientation = GradientOrientationEnum.BottomToTop
@@ -73,6 +75,13 @@ Namespace Controls
                 Return Value
             End Get
             Set(value As Single)
+                If MyBase.Value > MyBase.MaxValue Then
+                    m_value1_prev = MyBase.MaxValue
+                ElseIf MyBase.Value < MyBase.MinValue Then
+                    m_value1_prev = MyBase.MinValue
+                Else
+                    m_value1_prev = MyBase.Value
+                End If
                 MyBase.Value = value
             End Set
         End Property
@@ -151,6 +160,19 @@ Namespace Controls
                     m_unitvalue2 = value
                     Refresh()
                 End If
+            End Set
+        End Property
+
+        <Browsable(True),
+                Category("AGauge"),
+                Description("Show previous value.")>
+        Public Property ShowPreviousValue As Boolean
+            Get
+                Return m_ShowPreviousValue
+            End Get
+            Set(value As Boolean)
+                m_ShowPreviousValue = value
+                Refresh()
             End Set
         End Property
 
@@ -235,7 +257,7 @@ Namespace Controls
         Overrides Sub PostRender(graphics As Graphics)
             Dim PenString = New Pen(Color.Black)
             Dim PenFontV1 = New Font("Microsoft Sans Serif", 8, FontStyle.Bold)
-            Dim PenFontV2 = New Font("Microsoft Sans Serif", 7, FontStyle.Bold)
+            Dim PenFontV2 = New Font("Microsoft Sans Serif", 8, FontStyle.Bold)
             Dim StringPen = New SolidBrush(Color.Black)
             Dim LineHeight = 15
             Dim StrPos = Center
@@ -255,6 +277,47 @@ Namespace Controls
                 StrPos.Y += LineHeight
                 graphics.DrawString(StringToDraw, PenFontV2, StringPen,
                                         New PointF((StrPos.X - (StringSize.Width / 2) + 7), StrPos.Y))
+            End If
+
+            If m_ShowPreviousValue Then
+                Dim offset As Double = 0
+                Dim coord_start As Integer
+                Dim coord_end As Integer
+
+                Dim num As Double = Int((m_BaseArcStart + (m_value1_prev - MinValue) * m_BaseArcSweep / ValueRange) Mod 360)
+                If num < 0F Then
+                    num += 360.0
+                End If
+
+                Dim num2 As Double = num * Math.PI / 180.0
+                Dim num3 As Integer = m_NeedleWidth * centerFactor
+                Dim num4 As Integer = m_NeedleRadius * centerFactor
+
+                Dim point1_prev = New Point(Int(Center.X + (num4 / 3) * Math.Cos(num2)), Int(Center.Y + (num4 / 3) * Math.Sin(num2)))
+                Dim point2_prev = New Point(Int(Center.X + num4 * Math.Cos(num2)), Int(Center.Y + num4 * Math.Sin(num2)))
+
+                Select Case m_gradientOrientation
+                    Case GradientOrientationEnum.TopToBottom
+                        coord_start = Center.Y - BaseArcRadius
+                        coord_end = Center.Y + BaseArcRadius
+                        offset = (point2_prev.Y - coord_start) / (coord_end - coord_start)
+                    Case GradientOrientationEnum.BottomToTop
+                        coord_start = Center.Y + BaseArcRadius
+                        coord_end = Center.Y - BaseArcRadius
+                        offset = (coord_start - point2_prev.Y) / (coord_start - coord_end)
+                    Case GradientOrientationEnum.RightToLeft
+                        coord_start = Center.X + BaseArcRadius
+                        coord_end = Center.X - BaseArcRadius
+                        offset = (coord_start - point2_prev.X) / (coord_start - coord_end)
+                    Case GradientOrientationEnum.LeftToRight
+                        coord_start = Center.X - BaseArcRadius
+                        coord_end = Center.X + BaseArcRadius
+                        offset = (point2_prev.X - coord_start) / (coord_end - coord_start)
+                End Select
+
+                Dim pen_prev = New Pen(Color.FromArgb(Int(255 * (1.0 - offset)), Int(255 * offset), 0), num3)
+                graphics.DrawLine(pen_prev, point1_prev.X, point1_prev.Y, point2_prev.X, point2_prev.Y)
+                'graphics.DrawLine(pen_prev, Center.X, Center.Y, point1_prev.X, point1_prev.Y)
             End If
         End Sub
 

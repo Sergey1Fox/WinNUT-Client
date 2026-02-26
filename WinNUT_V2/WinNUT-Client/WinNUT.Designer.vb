@@ -39,6 +39,7 @@ Partial Class WinNUT
         Me.ManageOldPrefsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Quit = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Connection = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Menu_Persist = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Menu_Connect = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Disconnect = New System.Windows.Forms.ToolStripMenuItem()
@@ -80,7 +81,6 @@ Partial Class WinNUT
         Me.GB_InF_Dial = New System.Windows.Forms.GroupBox()
         Me.Lbl_InF_Dial = New System.Windows.Forms.Label()
         Me.CB_CurrentLog = New System.Windows.Forms.ComboBox()
-        Me.Menu_Persist = New System.Windows.Forms.ToolStripMenuItem()
         Me.Lbl_LastUpdate = New System.Windows.Forms.Label()
         Me.AG_InF = New WinNUT_Client.Controls.UPSVarGauge()
         Me.AG_InV = New WinNUT_Client.Controls.UPSVarGauge()
@@ -179,6 +179,14 @@ Partial Class WinNUT
         Me.Menu_Connection.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Persist, Me.ToolStripSeparator1, Me.Menu_Connect, Me.Menu_Disconnect})
         Me.Menu_Connection.Name = "Menu_Connection"
         resources.ApplyResources(Me.Menu_Connection, "Menu_Connection")
+        '
+        'Menu_Persist
+        '
+        Me.Menu_Persist.Checked = Global.WinNUT_Client.My.MySettings.Default.NUT_AutoReconnect
+        Me.Menu_Persist.CheckOnClick = True
+        Me.Menu_Persist.Image = Global.WinNUT_Client.My.Resources.Resources.RepeatHS
+        Me.Menu_Persist.Name = "Menu_Persist"
+        resources.ApplyResources(Me.Menu_Persist, "Menu_Persist")
         '
         'ToolStripSeparator1
         '
@@ -456,14 +464,6 @@ Partial Class WinNUT
         resources.ApplyResources(Me.CB_CurrentLog, "CB_CurrentLog")
         Me.CB_CurrentLog.Name = "CB_CurrentLog"
         '
-        'Menu_Persist
-        '
-        Me.Menu_Persist.Checked = Global.WinNUT_Client.My.MySettings.Default.NUT_AutoReconnect
-        Me.Menu_Persist.CheckOnClick = True
-        Me.Menu_Persist.Image = Global.WinNUT_Client.My.Resources.Resources.RepeatHS
-        Me.Menu_Persist.Name = "Menu_Persist"
-        resources.ApplyResources(Me.Menu_Persist, "Menu_Persist")
-        '
         'Lbl_LastUpdate
         '
         resources.ApplyResources(Me.Lbl_LastUpdate, "Lbl_LastUpdate")
@@ -490,6 +490,7 @@ Partial Class WinNUT
         Me.AG_InF.ScaleLinesMinorOuterRadius = 48
         Me.AG_InF.ScaleNumbersFormat = Nothing
         Me.AG_InF.ScaleNumbersRadius = 60
+        Me.AG_InF.ShowPreviousValue = True
         Me.AG_InF.UnitValue1 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Hertz
         Me.AG_InF.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.None
         Me.AG_InF.Value = 0!
@@ -515,6 +516,7 @@ Partial Class WinNUT
         Me.AG_InV.ScaleLinesMinorOuterRadius = 48
         Me.AG_InV.ScaleNumbersFormat = Nothing
         Me.AG_InV.ScaleNumbersRadius = 60
+        Me.AG_InV.ShowPreviousValue = True
         Me.AG_InV.UnitValue1 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Volts
         Me.AG_InV.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.None
         Me.AG_InV.Value = 0!
@@ -531,6 +533,7 @@ Partial Class WinNUT
         Me.AG_BattV.MaxValue = 100
         Me.AG_BattV.MinValue = 0
         Me.AG_BattV.Name = "AG_BattV"
+        Me.AG_BattV.NeedleColor2 = System.Drawing.Color.Gray
         Me.AG_BattV.NeedleRadius = 32
         Me.AG_BattV.ScaleLinesInterInnerRadius = 40
         Me.AG_BattV.ScaleLinesInterOuterRadius = 48
@@ -540,6 +543,7 @@ Partial Class WinNUT
         Me.AG_BattV.ScaleLinesMinorOuterRadius = 48
         Me.AG_BattV.ScaleNumbersFormat = Nothing
         Me.AG_BattV.ScaleNumbersRadius = 60
+        Me.AG_BattV.ShowPreviousValue = True
         Me.AG_BattV.UnitValue1 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Volts
         Me.AG_BattV.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.TemperatureC
         Me.AG_BattV.Value = 0!
@@ -565,6 +569,7 @@ Partial Class WinNUT
         Me.AG_Load.ScaleLinesMinorOuterRadius = 48
         Me.AG_Load.ScaleNumbersFormat = Nothing
         Me.AG_Load.ScaleNumbersRadius = 60
+        Me.AG_Load.ShowPreviousValue = True
         Me.AG_Load.UnitValue1 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Percent
         Me.AG_Load.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Watts
         Me.AG_Load.Value = 0!
@@ -590,6 +595,7 @@ Partial Class WinNUT
         Me.AG_OutV.ScaleLinesMinorOuterRadius = 48
         Me.AG_OutV.ScaleNumbersFormat = Nothing
         Me.AG_OutV.ScaleNumbersRadius = 60
+        Me.AG_OutV.ShowPreviousValue = True
         Me.AG_OutV.UnitValue1 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Volts
         Me.AG_OutV.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.None
         Me.AG_OutV.Value = 0!
@@ -615,6 +621,7 @@ Partial Class WinNUT
         Me.AG_BattCh.ScaleLinesMinorOuterRadius = 48
         Me.AG_BattCh.ScaleNumbersFormat = Nothing
         Me.AG_BattCh.ScaleNumbersRadius = 60
+        Me.AG_BattCh.ShowPreviousValue = True
         Me.AG_BattCh.UnitValue1 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.Percent
         Me.AG_BattCh.UnitValue2 = WinNUT_Client.Controls.UPSVarGauge.UnitValueEnum.None
         Me.AG_BattCh.Value = 0!
